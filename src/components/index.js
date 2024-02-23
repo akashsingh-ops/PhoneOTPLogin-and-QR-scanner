@@ -1,6 +1,6 @@
 // Otp.js
 import "react-native-gesture-handler";
-
+import Icon from "react-native-vector-icons/MaterialIcons";
 import React, { useState, useRef } from "react";
 import {
   Alert,
@@ -9,13 +9,14 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  View,
 } from "react-native";
 // import HomeScreen from "./HomeScreen";// Adjust the path if necessary
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
-import { firebaseConfig } from "../config";
+import { firebaseConfig } from "../../config";
 
 const Otp = ({ navigation }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -51,7 +52,7 @@ const Otp = ({ navigation }) => {
       );
       //   await fi
 
-      firebase.auth().signInWithCredential(credential);
+      // firebase.auth().signInWithCredential(credential);
       setCode("");
       navigation.navigate("Home"); // Navigate to home screen on successful login
     } catch (error) {
@@ -66,7 +67,11 @@ const Otp = ({ navigation }) => {
         ref={recaptchaVerifier}
         firebaseConfig={firebaseConfig}
       />
-      <Text style={styles.optText}>Login using OTP</Text>
+      <View style={styles.textIcon}>
+        <Icon style={{ marginLeft: 20 }} name="phone" size={27} color="white" />
+        <Text style={styles.optText}>Login using OTP</Text>
+      </View>
+
       <TextInput
         placeholder="Phone Number with Country Code"
         onChangeText={setPhoneNumber}
@@ -82,7 +87,7 @@ const Otp = ({ navigation }) => {
       >
         <Text style={styles.buttonText}>Send Verification</Text>
       </TouchableOpacity>
-      {/* Conditionally render OTP input and button based on showOtpInput state */}
+      {/* Conditionally render OTP input annd button based on showOtpInput state */}
       {showOtpInput && (
         <>
           <TextInput
@@ -166,12 +171,18 @@ const styles = StyleSheet.create({
   optText: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "black",
-    backgroundColor: "yellow",
-    padding: 4,
-    paddingLeft: 10,
-    paddingRight: 10,
-    margin: 20,
-    marginTop: 10,
+    color: "#fff",
+
+    margin: 10,
+    borderRadius: 15,
+  },
+  textIcon: {
+    backgroundColor: "#6600cc",
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 0,
+    marginTop: 0,
+    marginBottom: 15,
+    borderRadius: 15,
   },
 });

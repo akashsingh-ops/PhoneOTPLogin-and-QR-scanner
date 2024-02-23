@@ -2,7 +2,7 @@
 import QRCodeScanner from "./QRScanner";
 import React from "react";
 import { SafeAreaView, StyleSheet, Text } from "react-native";
-import Scanner from "./Scanner";
+
 import { Camera } from "expo-camera";
 
 const HomeScreen = () => {
